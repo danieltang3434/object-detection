@@ -1,14 +1,15 @@
 
 
 # pip install opencv-contrib-python # some people ask the difference between this and opencv-python
-                                    # and opencv-python contains the main packages wheras the other
-                                    # contains both main modules and contrib/extra modules
+# and opencv-python contains the main packages wheras the other
+# contains both main modules and contrib/extra modules
 # pip install cvlib # for object detection
 
 # # pip install gtts
 # # pip install playsound
 # use `pip3 install PyObjC` if you want playsound to run more efficiently.
 
+import os
 import cv2
 import cvlib as cv
 from cvlib.object_detection import draw_bbox
@@ -17,15 +18,14 @@ from playsound import playsound
 from food_facts import food_facts
 
 
-
-
 def speech(text):
     print(text)
     language = "en"
     output = gTTS(text=text, lang=language, slow=False)
 
-    output.save("./sounds/output.mp3")
-    playsound("./sounds/output.mp3")
+    output.save(os.path.dirname(__file__) + "\sounds\output.mp3")
+    # print(os.path.dirname(__file__) + "/sounds/output.mp3")
+    playsound(os.path.dirname(__file__) + "\sounds\output.mp3")
 
 
 video = cv2.VideoCapture(1)
